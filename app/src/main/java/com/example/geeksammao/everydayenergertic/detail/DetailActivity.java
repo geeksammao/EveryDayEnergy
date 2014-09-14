@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -36,12 +37,13 @@ public class DetailActivity extends Activity {
     }
 
     private void initView() {
-        formatter = new SimpleDateFormat("yyyy年MM月dd日");
-        date = new Date(System.currentTimeMillis() + 1);
+        formatter = new SimpleDateFormat("yyyy-MM-dd");
+        date = new Date(System.currentTimeMillis());
         dateString = formatter.format(date);
 
-        preferences = getPreferences(MODE_PRIVATE);
-        energyWords = preferences.getString(dateString,"NULL");
+        preferences = getSharedPreferences("dateData",0);
+        energyWords = preferences.getString(dateString,null);
+        Log.e("",dateString);
 
         energyText = (TextView)findViewById(R.id.energy_text);
         assetManager = getAssets();

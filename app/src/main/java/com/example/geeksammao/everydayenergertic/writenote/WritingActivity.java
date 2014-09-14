@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +39,6 @@ public class WritingActivity extends Activity implements View.OnClickListener {
         //set the most words to input to 30
         filters = new InputFilter[]{new InputFilter.LengthFilter(30)};
         writingNoteEditText.setFilters(filters);
-        todayEnergy = writingNoteEditText.getText().toString();
 
         finishButton.setOnClickListener(this);
     }
@@ -65,16 +65,19 @@ public class WritingActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("dateData", 0);
         SharedPreferences.Editor editor = preferences.edit();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
         String dateString = formatter.format(date);
 
-        editor.putString(dateString,todayEnergy);
+        todayEnergy = writingNoteEditText.getText().toString();
+
+        editor.putString(dateString, todayEnergy);
         editor.commit();
 
+        Log.e("",todayEnergy);
         finish();
     }
 }
