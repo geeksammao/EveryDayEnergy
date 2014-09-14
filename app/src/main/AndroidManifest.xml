@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".main.MyActivity"
+            android:name="com.main.MyActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,23 +20,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".detail.DetailActivity"
+            android:name="com.detail.DetailActivity"
             android:label="@string/app_name" >
         </activity>
 
         <receiver
-            android:name=".receiver.EnergyNotifyReceiver"
+            android:name="com.receiver.EnergyNotifyReceiver"
             android:enabled="true"
             android:exported="true" >
         </receiver>
         <receiver
-            android:name=".receiver.NoteWritingReceiver"
+            android:name="com.receiver.NoteWritingReceiver"
             android:enabled="true"
             android:exported="true" >
         </receiver>
 
         <activity
-            android:name=".writenote.WritingActivity"
+            android:name="com.writenote.WritingActivity"
             android:label="@string/title_activity_writing" >
         </activity>
     </application>
