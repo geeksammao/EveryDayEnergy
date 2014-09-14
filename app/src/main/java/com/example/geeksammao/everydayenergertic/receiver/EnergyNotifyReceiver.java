@@ -32,7 +32,7 @@ public class EnergyNotifyReceiver extends BroadcastReceiver {
                 setLargeIcon(iconBitmap).
                 setSmallIcon(R.drawable.icon).
                 setContentTitle("今日正能量").
-                setContentText("           点击查看").
+                setContentText("      点击查看").
                 setTicker("今日正能量").
                 setVibrate(vibrate).
                 setLights(Color.GREEN, 0, 1000).

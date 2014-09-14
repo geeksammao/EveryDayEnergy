@@ -8,19 +8,24 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.geeksammao.everydayenergertic.detail.DetailActivity;
 import com.example.geeksammao.everydayenergertic.receiver.EnergyNotifyReceiver;
 import com.example.geeksammao.everydayenergertic.R;
 import com.example.geeksammao.everydayenergertic.writenote.WritingActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import static com.example.geeksammao.everydayenergertic.R.drawable.icon;
 
@@ -60,12 +65,33 @@ public class MyActivity extends Activity implements View.OnClickListener {
         inputButton.setOnClickListener(this);
     }
 
+    // create sharedPreferrence to store the using time
     private void createSharedPreferrence() {
         SharedPreferences preferences = getSharedPreferences("isFirstTime", MODE_PRIVATE);
         isFirstTime = preferences.getBoolean("isFirstTime", true);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("isFirstTime", false);
         editor.commit();
+    }
+
+    // judge whether today user has written down the words
+    private boolean isTodayWritten(){
+        SharedPreferences preferrences = getSharedPreferences("dateData", 0);
+
+        // these following code should be packed later
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(System.currentTimeMillis() + 24*60*60*1000);
+        String dateString = formatter.format(date);
+
+        // if today words is null,means can still write today
+        String todayWords = preferrences.getString(dateString,null);
+
+        if (todayWords == null){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     private AlertDialog.Builder setPositiveButton(AlertDialog.Builder builder) {
@@ -93,12 +119,12 @@ public class MyActivity extends Activity implements View.OnClickListener {
 
                 Calendar calendar = Calendar.getInstance();
                 // set the calendar due to user setting the time
-                calendar.setTimeInMillis(System.currentTimeMillis());
+                calendar.setTimeInMillis(System.currentTimeMillis() + 24*60*60*1000);
                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 calendar.set(Calendar.MINUTE, minute);
 
                 // invoke the alarm to show the notification
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000,pendingIntent);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, pendingIntent);
             }
         }, currentTime.get(Calendar.HOUR_OF_DAY), currentTime.get(Calendar.MINUTE), true);
         timePickerDialog.show();
@@ -122,8 +148,13 @@ public class MyActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        inputButton.setEnabled(false); // avoid more than 1 click,more than 1 note a day
-        Intent intent = new Intent(this, WritingActivity.class);
-        startActivity(intent);
+        if (isTodayWritten()){
+            Toast.makeText(this,"你今天已经记录过正能量了哦，请明天再记录吧~",Toast.LENGTH_LONG).show();
+        }
+        else {
+//            inputButton.setBackgroundColor(Color.GRAY);
+            Intent intent = new Intent(this, WritingActivity.class);
+            startActivity(intent);
+        }
     }
 }

@@ -41,9 +41,9 @@ public class DetailActivity extends Activity {
         date = new Date(System.currentTimeMillis());
         dateString = formatter.format(date);
 
+        Log.e("",dateString);
         preferences = getSharedPreferences("dateData",0);
         energyWords = preferences.getString(dateString,null);
-        Log.e("",dateString);
 
         energyText = (TextView)findViewById(R.id.energy_text);
         assetManager = getAssets();

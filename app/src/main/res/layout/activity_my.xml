@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:background="#38f"
         android:text="@string/input_button_text"
+        android:textColor="#ffffff"
         android:id="@+id/input_button"
         android:layout_marginBottom="76dp"
         android:paddingLeft="15dp"

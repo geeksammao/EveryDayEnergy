@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:background="#38f"
         android:text="@string/finish_button"
+        android:textColor="#ffffff"
         android:id="@+id/finish_button"
         android:layout_below="@+id/writing_editText"
         android:layout_centerHorizontal="true"

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.geeksammao.everydayenergertic.R;
 
@@ -43,6 +44,16 @@ public class WritingActivity extends Activity implements View.OnClickListener {
         finishButton.setOnClickListener(this);
     }
 
+    private boolean isInputEmpty(){
+        todayEnergy = writingNoteEditText.getText().toString();
+
+        if(todayEnergy.equals("")){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,19 +76,25 @@ public class WritingActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        SharedPreferences preferences = getSharedPreferences("dateData", 0);
-        SharedPreferences.Editor editor = preferences.edit();
+        // judge whether the input is empty
+        if(!isInputEmpty()){
+            SharedPreferences preferences = getSharedPreferences("dateData", 0);
+            SharedPreferences.Editor editor = preferences.edit();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date(System.currentTimeMillis());
-        String dateString = formatter.format(date);
+            // these following code should be packed later
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date(System.currentTimeMillis() + 24*60*60*1000);
+            String dateString = formatter.format(date);
 
-        todayEnergy = writingNoteEditText.getText().toString();
 
-        editor.putString(dateString, todayEnergy);
-        editor.commit();
+            editor.putString(dateString, todayEnergy);
+            editor.commit();
 
-        Log.e("",todayEnergy);
-        finish();
+            Toast.makeText(this,"正能量记录完成~",Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        else {
+            Toast.makeText(this,"记录内容不能为空哦~",Toast.LENGTH_SHORT).show();
+        }
     }
 }
