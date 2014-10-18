@@ -2,29 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffeaeaea"
     tools:context="com.example.geeksammao.everydayenergertic.writenote.WritingActivity">
 
     <EditText
         android:hint="@string/input_hint"
+        android:gravity="start"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="match_parent"
         android:background="#ffffff"
-        android:layout_marginTop="81dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:id="@+id/writing_editText" />
 
-    <Button
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:background="#38f"
-        android:text="@string/finish_button"
-        android:textColor="#ffffff"
-        android:id="@+id/finish_button"
-        android:layout_below="@+id/writing_editText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp" />
+
 
 </RelativeLayout>

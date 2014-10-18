@@ -9,9 +9,9 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/CustomTheme" >
         <activity
-            android:name="com.main.MyActivity"
+            android:name="com.module.main.MyActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.detail.DetailActivity"
+            android:name="com.module.detail.DetailActivity"
             android:label="@string/app_name" >
         </activity>
 
@@ -37,7 +37,11 @@
 
         <activity
             android:name="com.writenote.WritingActivity"
-            android:label="@string/title_activity_writing" >
+            android:label="@string/write_energy" >
+        </activity>
+        <activity
+            android:name="com.module.setting.SettingActivity"
+            android:label="设置时间" >
         </activity>
     </application>
 

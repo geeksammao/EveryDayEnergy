@@ -8,8 +8,10 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="use_guide">  欢迎使用每日正能量，你可以用它每天记录下一句正能量，把它送给未来的自己，让自己每天都充满正能量!\n\n  请选择想在每天的什么时间获得正能量的提醒。</string>
     <string name="input_button_text">开始记录</string>
-    <string name="title_activity_writing">WritingActivity</string>
-    <string name="input_hint">请记录下你想送给自己的正能量</string>
+    <string name="input_hint">请记录下你的正能量，不超过30字</string>
     <string name="finish_button">完成</string>
+    <string name="write_energy">每日记录</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="setting_energy_notify_time">设置正能量提醒时间</string>
 
 </resources>

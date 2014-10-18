@@ -1,4 +1,4 @@
-package com.detail;
+package com.module.detail;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -14,7 +14,6 @@ import com.example.geeksammao.everydayenergertic.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Formatter;
 
 
 public class DetailActivity extends Activity {

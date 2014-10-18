@@ -1,16 +1,15 @@
-package com.main;
+package com.module.main;
 
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,9 +17,9 @@ import android.widget.Button;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.detail.DetailActivity;
-import com.receiver.EnergyNotifyReceiver;
 import com.example.geeksammao.everydayenergertic.R;
+import com.module.setting.SettingActivity;
+import com.receiver.EnergyNotifyReceiver;
 import com.writenote.WritingActivity;
 
 import java.text.SimpleDateFormat;
@@ -75,8 +74,8 @@ public class MyActivity extends Activity implements View.OnClickListener {
     }
 
     // judge whether today user has written down the words
-    private boolean isTodayWritten(){
-        SharedPreferences preferrences = getSharedPreferences("dateData", 0);
+    public static boolean isTodayWritten(Context context){
+        SharedPreferences preferrences = context.getSharedPreferences("dateData", 0);
 
         // these following code should be packed later
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -140,15 +139,18 @@ public class MyActivity extends Activity implements View.OnClickListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                Intent intent = new Intent(MyActivity.this, SettingActivity.class);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onClick(View v) {
-        if (isTodayWritten()){
+        if (isTodayWritten(this)){
             Toast.makeText(this,"你今天已经记录过正能量了哦，请明天再记录吧~",Toast.LENGTH_LONG).show();
         }
         else {
