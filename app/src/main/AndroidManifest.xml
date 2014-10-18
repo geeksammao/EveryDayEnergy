@@ -36,7 +36,7 @@
         </receiver>
 
         <activity
-            android:name="com.writenote.WritingActivity"
+            android:name="com.module.writenote.WritingActivity"
             android:label="@string/write_energy" >
         </activity>
         <activity

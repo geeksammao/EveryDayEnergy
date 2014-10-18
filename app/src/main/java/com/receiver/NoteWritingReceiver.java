@@ -11,7 +11,7 @@ import android.graphics.BitmapFactory;
 
 import com.example.geeksammao.everydayenergertic.R;
 import com.module.main.MyActivity;
-import com.writenote.WritingActivity;
+import com.module.writenote.WritingActivity;
 
 public class NoteWritingReceiver extends BroadcastReceiver {
     public NoteWritingReceiver() {

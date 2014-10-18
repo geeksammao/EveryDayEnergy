@@ -1,4 +1,4 @@
-package com.writenote;
+package com.module.writenote;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

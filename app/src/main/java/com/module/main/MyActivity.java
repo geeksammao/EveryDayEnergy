@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.example.geeksammao.everydayenergertic.R;
 import com.module.setting.SettingActivity;
 import com.receiver.EnergyNotifyReceiver;
-import com.writenote.WritingActivity;
+import com.module.writenote.WritingActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
